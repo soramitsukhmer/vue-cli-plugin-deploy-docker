@@ -1,4 +1,4 @@
-DOCKER_IMAGE_NAME=awesome-app
+DOCKER_IMAGE_NAME=<%= tag.split(':')[0] %>
 BUILDX_PLATFORM=linux/amd64
 
 main:

@@ -7,6 +7,6 @@ module.exports = {
             },
         });
 
-        api.render('./template')
+        api.render('./template', { ...options })
     }
 }
