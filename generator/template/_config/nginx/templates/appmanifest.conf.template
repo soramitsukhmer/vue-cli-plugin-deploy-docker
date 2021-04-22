@@ -1,0 +1,42 @@
+server {
+    listen       80;
+    listen       [::]:80;
+    server_name  localhost;
+    root         /var/www/public;
+    error_page   500 502 503 504  /50x.html;
+
+    # security
+    include nginxconfig.io/security.conf;
+
+    # Healthcheck
+    location = /actuator/health {
+        add_header Content-Type application/json;
+        return 200 '{"status": "UP"}';
+    }
+
+    # Error
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+
+    # Application
+    location / {
+        try_files $uri $uri/ /index.html;
+
+        # Custom Variables
+        add_header X-VUE-APP-BASE-URL ${VUE_APP_BASE_URL};
+
+        # Remove in favor of issue #443
+        # add_header X-VUE-SENTRY-DSN ${VUE_APP_SENTRY_DSN};
+
+        # Disable Cache-Control
+        add_header Last-Modified $date_gmt;
+        add_header Cache-Control 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0';
+        if_modified_since off;
+        expires off;
+        etag off;
+    }
+
+    # additional config
+    include nginxconfig.io/general.conf;
+}

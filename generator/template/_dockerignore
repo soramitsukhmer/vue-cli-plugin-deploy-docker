@@ -1,8 +1,7 @@
-.git
-.vscode
+.bin/
+.github/
+.vscode/
+docs/
 **/node_modules
 **/dist
-Dockerfile*
-docker-compose*
-README.md
-LICENSE
+**/tests
