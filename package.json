@@ -1,13 +1,14 @@
 {
   "name": "@soramitsukhmer/vue-cli-plugin-deploy-docker",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "main": "index.js",
   "repository": "git@github.com:soramitsukhmer/vue-cli-plugin-deploy-docker.git",
   "homepage": "https://github.com/soramitsukhmer/vue-cli-plugin-deploy-docker#readme",
   "author": "Socheat Sok <alex@socheat.net>",
   "license": "MIT",
   "scripts": {
-    "test": "cd test && rm -rf node_modules && yarn"
+    "test": "cd test && rm -rf node_modules && yarn",
+    "bump:release": "yarn version"
   },
   "bugs": {
     "url": "https://github.com/soramitsukhmer/vue-cli-plugin-deploy-docker/issues"
