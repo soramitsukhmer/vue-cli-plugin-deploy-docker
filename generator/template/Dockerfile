@@ -7,10 +7,11 @@ WORKDIR /usr/src/app
 ENV CYPRESS_INSTALL_BINARY=0
 
 COPY .config/bootstrap.sh /bootstrap.sh
-RUN /bootstrap.sh
+RUN chmod +x /bootstrap.sh && \
+    /bootstrap.sh
 
-COPY .npmrc .yarnrc package.json ./
-COPY yarn.lock ./
+COPY .npmrc .yarnrc ./
+COPY package.json yarn.lock ./
 RUN yarn install
 
 ARG NODE_ENV=production
