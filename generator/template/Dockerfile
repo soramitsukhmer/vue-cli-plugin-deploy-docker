@@ -28,7 +28,7 @@ RUN yarn run build --mode ${NODE_ENV}
 # Build Stage 2
 # This build take the application built in the builder stage
 #
-FROM nginx:stable-alpine
+FROM socheatsok78/nginx-s6:stable-alpine
 
 ARG NODE_ENV=production
 ARG VUE_APP_VERSION=latest
@@ -40,14 +40,13 @@ LABEL environment="$NODE_ENV"
 LABEL version="$VUE_APP_VERSION"
 LABEL sha="$VUE_APP_GIT_SHA"
 
-ENV APP_ENV=1
 ENV VUE_APP_VERSION=${VUE_APP_VERSION}
 ENV VUE_APP_GIT_SHA=${VUE_APP_GIT_SHA}
 
 # NGINX
 # Copy the respective configuration
-COPY .config/docker-entrypoint.d/*.sh /docker-entrypoint.d/
-COPY .config/nginx/templates/*.template /etc/nginx/templates/
+COPY .config/docker-entrypoint.d/ /docker-entrypoint.d/
+COPY .config/nginx/templates/ /etc/nginx/templates/
 COPY .config/nginx/nginxconfig.io /etc/nginx/nginxconfig.io
 
 # Copy the application from builder stage
